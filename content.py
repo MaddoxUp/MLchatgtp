@@ -39,4 +39,5 @@ def chat():
         print(f'{response["usage"]["prompt_tokens"]} prompt tokens counted by the OpenAI API.')
         conversation_history.append({"role": "assistant", "content": ai_reply})
 
+chat()
 
