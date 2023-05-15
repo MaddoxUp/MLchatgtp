@@ -28,6 +28,6 @@ def set_config_manually(config_path):
         f.write(f"api_key={openai.api_key}\n")
         if proxy:
             f.write(f"proxy={proxy}\n")
-    print(f"配置已保存到 {config_path} 文件中。")
+    print(f"配置已保存到 MLchatgpt_key.txt文件中。")
 
 load_config()

@@ -97,7 +97,7 @@ def load_prompts():
                        
                    
                     try:
-                            tem = float(input(f"temperature的值为:{prompts['temperature']}，请输入修改后的值（0.0-1.0）:"))
+                            tem = float(input(f"temperature={prompts['temperature']}，请输入修改后的值（0.0-1.0）:"))
                             
                     except ValueError:
                             continue
@@ -108,7 +108,7 @@ def load_prompts():
                                        json.dump(prompts, f, ensure_ascii=False, indent=4)                         
                 elif elchoise == 2: 
                  try:
-                     taken = int(input(f"当前值为{prompts['max_tokens']},请输入修改后值（0-8080）: "))
+                     taken = int(input(f"maxtaken={prompts['max_tokens']},请输入修改后值（0-8080）: "))
                      
                  except ValueError:
                     continue
