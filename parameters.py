@@ -127,7 +127,7 @@ def load_prompts():
                      
 
     parameters = {
-        "talk": [prompts[prompts['预设名称'][prompt_choice-1]][0], prompts[prompts['预设名称'][prompt_choice-1]][1], prompts[prompts['预设名称'][prompt_choice-1]][2],prompts[prompts['预设名称'][prompt_choice-1]][3],prompts[prompts['预设名称'][prompt_choice-1]][4],prompts[prompts['预设名称'][prompt_choice-1]][5],prompts[prompts['预设名称'][prompt_choice-1]][6],prompts[prompts['预设名称'][prompt_choice-1]][7],prompts[prompts['预设名称'][prompt_choice-1]][8],prompts[prompts['预设名称'][prompt_choice-1]][9]],
+        "talk": [prompts[prompts['预设名称'][prompt_choice-1]][0], prompts[prompts['预设名称'][prompt_choice-1]][1], prompts[prompts['预设名称'][prompt_choice-1]][2],prompts[prompts['预设名称'][prompt_choice-1]][3],prompts[prompts['预设名称'][prompt_choice-1]][4],prompts[prompts['预设名称'][prompt_choice-1]][5],prompts[prompts['预设名称'][prompt_choice-1]][6],prompts[prompts['预设名称'][prompt_choice-1]][7],prompts[prompts['预设名称'][prompt_choice-1]][8]],
         "max_tokens": [prompts['max_tokens'][0]],
         "temperature": [prompts['temperature'][0]],
         "parameter":[prompts['预设名称'][prompt_choice-1]],
