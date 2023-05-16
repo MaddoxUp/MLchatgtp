@@ -1,9 +1,11 @@
 import openai
 import getinput
 from parameters import load_prompts
+from language import languageEnter
 
 
 def chat():
+    language=languageEnter()
     parameters = load_prompts()
     conversation_history = []
     while True:
@@ -11,7 +13,7 @@ def chat():
              conversation_history.append({"role": "user", "content": parameters['talk'][0]})
              break
         else:
-             print("预设错误请重新设置")
+             print(f"{language[16]}")
              parameters = load_prompts()
     for i in range(4):
         if parameters['talk'][2*i+1] not in [0]:

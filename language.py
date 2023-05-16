@@ -17,7 +17,6 @@ def languageEnter():
     with open('tran_.json', 'r') as f:
          lag = json.load(f)        
     ENTER=lag[lag['i'][lag['mem'][0]]]
-    print(ENTER)
     return ENTER
 
 
