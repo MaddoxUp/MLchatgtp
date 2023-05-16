@@ -44,6 +44,7 @@ def load_prompts():
          taken = prompts['max_tokens'][0]
     
          while True:
+            language=languageEnter()
             print(f"\nmode {prompts['model'][model_choice-1]},max_taken {taken},temperature {tem},promt{prompts['promtname'][prompt_choice-1]}\n")
             
             print(f"1.{language[5]} \n2.{language[6]}\n3.{language[7]}\n4.{language[8]}")

@@ -17,7 +17,7 @@ def languageEnter():
     with open('tran_.json', 'r') as f:
          lag = json.load(f)        
     ENTER=lag[lag['i'][lag['mem'][0]]]
-    return ENTER
+    return lag[lag['i'][lag['mem'][0]]]
 
 
 def languagechoise():
@@ -33,6 +33,7 @@ def languagechoise():
     if  lag["mem"][0] in [0,1]:
         with open("tran_.json", "w") as f:
              json.dump(lag, f, ensure_ascii=False, indent=4)
+        languageEnter()     
 
 
 
