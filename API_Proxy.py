@@ -1,6 +1,6 @@
 import openai
 import os
-from language import languageEnter
+from language import languageEnter,languagechoise
 
 def load_config():
     language=languageEnter()
@@ -22,6 +22,7 @@ def load_config():
         set_config_manually(config_path)
 
 def set_config_manually(config_path):
+    languagechoise()
     language=languageEnter()
     openai.api_key = input(f"{language[2]}")
     
