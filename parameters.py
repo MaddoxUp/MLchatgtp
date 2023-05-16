@@ -1,6 +1,6 @@
 import json
 import os
-from language import languageEnter
+from language import languageEnter,languagechoise
 
 def create_default_prompts():
     if not os.path.exists("prompts.json"):
@@ -25,7 +25,7 @@ def create_default_prompts():
     
      
    
-create_default_prompts()
+
 
 def load_prompts():
     language=languageEnter()
@@ -89,7 +89,7 @@ def load_prompts():
                         
                      continue
                elif choice == 3:
-                  print("1.temperature \n2.max_tokens")
+                  print("1.temperature \n2.max_tokens\n3.language")
                   try:
                      elchoise = int(input(f"{language[13]} "))
                   except ValueError:
@@ -120,7 +120,8 @@ def load_prompts():
                                     prompts['max_tokens'][0] = taken
                                     with open("prompts.json", "w") as f:
                                        json.dump(prompts, f, ensure_ascii=False, indent=4)
-
+                     elif elchoise ==3:
+                         languagechoise()
                elif choice == 4:
 
                   break

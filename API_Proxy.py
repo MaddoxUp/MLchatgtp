@@ -34,4 +34,3 @@ def set_config_manually(config_path):
             f.write(f"proxy={proxy}\n")
     print(f"{language[4]}")
 
-load_config()
