@@ -36,95 +36,96 @@ def load_prompts():
     else:
 
         
-        model_choice  = 1
-        prompt_choice = 1
-        tem = prompts["temperature"][0]
-        taken = prompts['max_tokens'][0]
+         model_choice  = 1
+         prompt_choice = 1
+         tem = prompts["temperature"][0]
+         taken = prompts['max_tokens'][0]
     
-    while True:
-        print(f"\nmode={prompts['model'][model_choice-1]},max_taken={taken},tempperature={tem},promt{prompts['promtname'][prompt_choice-1]}\n")
-        print("1.MODEL \n2.initial_prompt（promt选项）\n3.其他参数（可选）\n4.退出")
-    
-        try:
-         choice = int(input("Please choose an option: "))
-        except ValueError:
-           print("跳过选择")
-           break
+         while True:
+            print(f"\nmode {prompts['model'][model_choice-1]},max_taken {taken},temperature {tem},promt{prompts['promtname'][prompt_choice-1]}\n")
+            
+            print("1.MODEL \n2.initial_prompt（promt选项）\n3.其他参数（可选）\n4.退出")
          
-        else:
-          if choice == 1:
-             print("1.gpt-3.5-turbo \n2.gpt-4 ")
-             try:
-                model_choice = int(input("请选择模型: "))
-                if model_choice not in [1,2]:
-                  print("输入有误，默认选择1")
-                  model_choice = 1
-
-             except ValueError:
-                continue
-             else:   
-                  if model_choice not in [1,2]:
-                     print("输入有误，默认选择1")
-                     model_choice = 1
-                     continue
-                 
-          elif choice == 2:
-             for i, prompt_name in enumerate(list(prompts.keys())[:8], 1):
-                 print(f"{i}.{prompt_name}")
-                 
-             try:
-                prompt_choice = int(input("请选择promt: "))
-                
-             except ValueError:
-                print("输入有误，默认选择1")
-                prompt_choice=1
-                
-                continue
-            
-             
-             else:
-                    
-                 continue
-          elif choice == 3:
-            print("1.temperature \n2.max_tokens")
             try:
-               elchoise = int(input("请选择需要修改参数: "))
+               choice = int(input("Please choose an option: "))
             except ValueError:
-               continue  
+               print("跳过选择")
+               break
+               
             else:
-                if elchoise == 1:
-                   
-                       
-                   
-                    try:
-                            tem = float(input(f"temperature={prompts['temperature']}，请输入修改后的值（0.0-1.0）:"))
-                            
-                    except ValueError:
-                            continue
-                    else:
-                               if 0.0 <= tem <= 1.0:
-                                  prompts["temperature"][0] = tem  
-                                  with open("prompts.json", "w") as f:
-                                       json.dump(prompts, f, ensure_ascii=False, indent=4)                         
-                elif elchoise == 2: 
-                 try:
-                     taken = int(input(f"maxtaken={prompts['max_tokens']},请输入修改后值（0-8080）: "))
-                     
-                 except ValueError:
-                    continue
-                 else:
-                         if 0 <= taken <= 8080:
-                           prompts['max_tokens'][0] = taken
-                           with open("prompts.json", "w") as f:
-                               json.dump(prompts, f, ensure_ascii=False, indent=4)
+               if choice == 1:
+                  print("1.gpt-3.5-turbo \n2.gpt-4 ")
+                  try:
+                     model_choice = int(input("请选择模型: "))
+                     if model_choice not in [1,2]:
+                        print("输入有误，默认选择1")
+                        model_choice = 1
 
-          elif choice == 4:
-
-            break
-          else:   
-            
-            break            
+                  except ValueError:
+                     continue
+                  else:   
+                        if model_choice not in [1,2]:
+                           print("输入有误，默认选择1")
+                           model_choice = 1
+                           continue
                      
+               elif choice == 2:
+                  for i, prompt_name in enumerate(list(prompts.keys())[:8], 1):
+                     print(f"{i}.{prompt_name}")
+                     
+                  try:
+                     prompt_choice = int(input("请选择promt: "))
+                     
+                  except ValueError:
+                     print("输入有误，默认选择1")
+                     prompt_choice=1
+                     
+                     continue
+                  
+                  
+                  else:
+                        
+                     continue
+               elif choice == 3:
+                  print("1.temperature \n2.max_tokens")
+                  try:
+                     elchoise = int(input("请选择需要修改参数: "))
+                  except ValueError:
+                     continue  
+                  else:
+                     if elchoise == 1:
+                        
+                           
+                        
+                        try:
+                                 tem = float(input(f"temperature={prompts['temperature']}，请输入修改后的值（0.0-1.0）:"))
+                                 
+                        except ValueError:
+                                 continue
+                        else:
+                                    if 0.0 <= tem <= 1.0:
+                                       prompts["temperature"][0] = tem  
+                                       with open("prompts.json", "w") as f:
+                                             json.dump(prompts, f, ensure_ascii=False, indent=4)                         
+                     elif elchoise == 2: 
+                        try:
+                              taken = int(input(f"maxtaken={prompts['max_tokens']},请输入修改后值（0-8080）: "))
+                              
+                        except ValueError:
+                           continue
+                        else:
+                                 if 0 <= taken <= 8080:
+                                    prompts['max_tokens'][0] = taken
+                                    with open("prompts.json", "w") as f:
+                                       json.dump(prompts, f, ensure_ascii=False, indent=4)
+
+               elif choice == 4:
+
+                  break
+               else:   
+                  
+                  break            
+                           
 
     parameters = {
         "talk": [prompts[prompts['promtname'][prompt_choice-1]][0], prompts[prompts['promtname'][prompt_choice-1]][1], prompts[prompts['promtname'][prompt_choice-1]][2],prompts[prompts['promtname'][prompt_choice-1]][3],prompts[prompts['promtname'][prompt_choice-1]][4],prompts[prompts['promtname'][prompt_choice-1]][5],prompts[prompts['promtname'][prompt_choice-1]][6],prompts[prompts['promtname'][prompt_choice-1]][7],prompts[prompts['promtname'][prompt_choice-1]][8]],
