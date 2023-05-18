@@ -1,50 +1,62 @@
-# main.py
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QAction, QMenu, QListView, QListWidgetItem, QVBoxLayout, QWidget, QPushButton
+from PyQt5.QtGui import QIcon, QKeyEvent
+from PyQt5.QtCore import Qt, QEvent
 
-import tkinter as tk
-from tkinter import messagebox
-import openai
-# Assume the other scripts you mentioned are imported here...
-
-class ChatWindow:
+class MainWindow(QMainWindow):
     def __init__(self):
-        self.root = tk.Tk()
-        self.create_widgets()
-        # Initialize other attributes here...
+        super(MainWindow, self).__init__()
 
-    def create_widgets(self):
-        self.create_chatbox()
-        self.create_entrybox()
-        self.create_send_button()
-        self.create_setting_button()
+        self.initUI()
 
-    def create_chatbox(self):
-        self.chatbox = tk.Text(self.root)
-        self.chatbox.pack()
+    def initUI(self):
+        self.setGeometry(300, 300, 300, 200)
+        self.setWindowTitle('Chat GUI')
 
-    def create_entrybox(self):
-        self.entrybox = tk.Text(self.root)
-        self.entrybox.pack()
+        # List View
+        self.session_list = QListView()
+        self.session_list.setModel(QStandardItemModel())
 
-    def create_send_button(self):
-        self.send_button = tk.Button(self.root, text="Send", command=self.send)
-        self.send_button.pack()
+        # Add item to the list
+        self.session_list.model().appendRow(QStandardItem("Session 1"))
 
-    def create_setting_button(self):
-        self.setting_button = tk.Button(self.root, text="Setting", command=self.open_setting)
-        self.setting_button.pack()
+        # Text Edit
+        self.text_edit = QTextEdit()
+        self.text_edit.installEventFilter(self)
 
-    def send(self):
-        user_input = self.entrybox.get("1.0", 'end-1c')
-        self.entrybox.delete('1.0', tk.END)
-        # Process the user input here...
+        # Button
+        self.send_button = QPushButton('Send', self)
+        self.send_button.clicked.connect(self.on_click)
 
-    def open_setting(self):
-        # Open the setting window here...
-        pass
+        # Layout
+        vbox = QVBoxLayout()
+        vbox.addWidget(self.session_list)
+        vbox.addWidget(self.text_edit)
+        vbox.addWidget(self.send_button)
 
-    def mainloop(self):
-        self.root.mainloop()
+        widget = QWidget()
+        widget.setLayout(vbox)
+        self.setCentralWidget(widget)
 
-if __name__ == "__main__":
-    window = ChatWindow()
-    window.mainloop()
+        self.show()
+
+    def eventFilter(self, obj, event):
+        if obj == self.text_edit:
+            if event.type() == QEvent.KeyPress:
+                keyEvent = QKeyEvent(event)
+                if keyEvent.key() == Qt.Key_Return and not keyEvent.isAutoRepeat():
+                    # Enter pressed, do something
+                    print('Enter pressed')
+                    return True
+        # pass the event on to the parent class
+        return QMainWindow.eventFilter(self, obj, event)
+
+    def on_click(self):
+        print('Button clicked, do something')
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+
+    window = MainWindow()
+
+    sys.exit(app.exec_())
